@@ -4,6 +4,7 @@ import { StorageService } from '../services/storage.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode';
+import Swal from 'sweetalert2';
 
 interface JwtPayload {
   role: { authority: string }[];
@@ -48,34 +49,48 @@ export class LoginComponent implements OnInit {
       passwordToggleIcon.classList.add('fa-eye');
     }
   }
-
   onSubmit(loginForm: NgForm): void {
     if (loginForm.valid) {
       const { email, password } = this.user;
-
+  
       this.authService.login(email, password).subscribe({
         next: data => {
           this.storageService.saveUser(data);
           const token = data.token;
-          sessionStorage.setItem('token',token)
+          sessionStorage.setItem('token', token);
+  
           if (token) {
             try {
               const decodedToken: JwtPayload = jwtDecode(token);
               if (decodedToken.role && decodedToken.role.length > 0) {
                 this.role = decodedToken.role[0].authority;
-                sessionStorage.setItem('role',this.role);
+                sessionStorage.setItem('role', this.role);
               }
               console.log('Role from token:', this.role);
             } catch (error) {
               console.error('Error decoding token:', error);
             }
           }
-
-          this.redirectBasedOnRole();
+  
+          Swal.fire({
+            title: 'Login Successful',
+            text: 'You have been logged in successfully!',
+            icon: 'success',
+            confirmButtonColor: '#3085d6'
+          }).then(() => {
+            this.redirectBasedOnRole(); 
+          });
         },
         error: err => {
           this.errorMessage = err;
           this.isLoginFailed = true;
+  
+          Swal.fire({
+            title: 'Login Failed',
+            text: 'Invalid email or password. Please try again.',
+            icon: 'error',
+            confirmButtonColor: '#d33'
+          });
         }
       });
     }

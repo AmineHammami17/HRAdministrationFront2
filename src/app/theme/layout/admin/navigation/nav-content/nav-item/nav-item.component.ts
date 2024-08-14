@@ -1,19 +1,17 @@
-// Angular Import
 import { Component, Input } from '@angular/core';
-
-// project import
+import { Router } from '@angular/router';
 import { NavigationItem } from '../../navigation';
-
+import { StorageService } from 'src/app/services/storage.service';
 @Component({
   selector: 'app-nav-item',
   templateUrl: './nav-item.component.html',
   styleUrls: ['./nav-item.component.scss']
 })
 export class NavItemComponent {
-  // public props
   @Input() item!: NavigationItem;
 
-  // public method
+  constructor(private router: Router, private storageService: StorageService) {}
+
   closeOtherMenu(event: MouseEvent) {
     const ele = event.target as HTMLElement;
     if (ele !== null && ele !== undefined) {
@@ -40,5 +38,13 @@ export class NavItemComponent {
     if (document.querySelector('app-navigation.pcoded-navbar')?.classList.contains('mob-open')) {
       document.querySelector('app-navigation.pcoded-navbar')?.classList.remove('mob-open');
     }
+    if (this.item.id === 'logout') {
+      this.logout();
+    }
+  }
+
+  logout(): void {
+    this.storageService.clean(); 
+    this.router.navigate(['/login']); 
   }
 }

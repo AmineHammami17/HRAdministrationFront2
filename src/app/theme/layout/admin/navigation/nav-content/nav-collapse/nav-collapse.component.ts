@@ -1,8 +1,5 @@
-// Angular Import
 import { Component, Input } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-
-// project import
 import { NavigationItem } from '../../navigation';
 
 @Component({
@@ -20,10 +17,8 @@ import { NavigationItem } from '../../navigation';
   ]
 })
 export class NavCollapseComponent {
-  // public props
   @Input() item!: NavigationItem;
 
-  // public method
   navCollapse(e: MouseEvent) {
     let parent = e.target as HTMLElement;
     parent = (parent as HTMLElement).parentElement as HTMLElement;

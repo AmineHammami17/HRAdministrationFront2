@@ -42,6 +42,18 @@ import { HolidaysComponent } from './dashboard-components/holidays/holidays.comp
 import { TasksComponent } from './dashboard-components/tasks/tasks.component';
 import { AddTaskComponent } from './dashboard-components/tasks/add-task/add-task.component';
 import { UpdateTaskComponent } from './dashboard-components/tasks/update-task/update-task.component';
+import { AddComplaintComponent } from './dashboard-components/complaints/add-complaint/add-complaint.component';
+import { UpdateComplaintComponent } from './dashboard-components/complaints/update-complaint/update-complaint.component';
+import { ComplaintsComponent } from './dashboard-components/complaints/complaints.component';
+import { FilesComponent } from './dashboard-components/files/files.component';
+import { UploadFileComponent } from './dashboard-components/files/upload-file/upload-file.component';
+import { AnnouncementComponent } from './dashboard-components/announcements/announcements.component';
+import { AddAnnouncementComponent } from './dashboard-components/announcements/add-announcement/add-announcement.component';
+import { UpdateAnnouncementComponent } from './dashboard-components/announcements/update-announcement/update-announcement.component';
+import { UpdateLeaveRequestComponent } from './dashboard-components/leaverequests/update-leaverequests/update-leaverequests.component';
+import { LeaveRequestsComponent } from './dashboard-components/leaverequests/leaverequests.component';
+import { AttendancesComponent } from './dashboard-components/attendances/attendances.component';
+import { UpdateAttendanceComponent } from './dashboard-components/attendances/update-attendance/update-attendance.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,10 +84,22 @@ import { UpdateTaskComponent } from './dashboard-components/tasks/update-task/up
     TasksComponent,
     AddTaskComponent,
     UpdateTaskComponent,
-
+    AddComplaintComponent,
+    UpdateComplaintComponent,
+    ComplaintsComponent,
+    UploadFileComponent,
+    FilesComponent,
+    AnnouncementComponent,
+    AddAnnouncementComponent,
+    UpdateAnnouncementComponent,
+    UpdateLeaveRequestComponent,
+    LeaveRequestsComponent,
+    
+    
+    
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, BrowserAnimationsModule,
-    HttpClientModule, ProfileEmployeeComponent,BodyEmployeeDashbordComponent,RouterModule,MatInputModule,MatDatepickerModule,MatNativeDateModule ,MatIconModule],
+  imports: [BrowserModule,AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, BrowserAnimationsModule,
+    HttpClientModule, ProfileEmployeeComponent,BodyEmployeeDashbordComponent,RouterModule,MatInputModule,MatDatepickerModule,MatNativeDateModule ,MatIconModule,UpdateAttendanceComponent,AttendancesComponent],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass:HttpRequestInterceptor , multi: true },],
   bootstrap: [AppComponent]
 })

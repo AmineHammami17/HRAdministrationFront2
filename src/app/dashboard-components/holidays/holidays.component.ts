@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HolidaysService } from 'src/app/services/holidays/holidays.service';
 import { Holiday } from 'src/app/models/holiday';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-holidays',
   templateUrl: './holidays.component.html',
@@ -32,19 +33,43 @@ export class HolidaysComponent implements OnInit {
 
   deleteHoliday(id?: number): void {
     if (id !== undefined) {
-      this.holidaysService.deleteHoliday(id).subscribe(
-        () => {
-          console.log('Holiday deleted:', id);
-          this.loadHolidays();
-        },
-        (error) => {
-          console.error('Error deleting project', error);
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.holidaysService.deleteHoliday(id).subscribe(
+            () => {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your holiday has been deleted.',
+                icon: 'success',
+                confirmButtonColor: '#3085d6'
+              });
+              this.loadHolidays();  
+            },
+            (error) => {
+              Swal.fire({
+                title: 'Error!',
+                text: 'There was an issue deleting the holiday.',
+                icon: 'error',
+                confirmButtonColor: '#3085d6'
+              });
+              console.error('Error deleting holiday', error);
+            }
+          );
         }
-      );
+      });
     } else {
       console.error('Holiday ID is undefined');
     }
   }
+  
 
   toggleAddHoliday(): void {
     this.showAddHoliday = !this.showAddHoliday;

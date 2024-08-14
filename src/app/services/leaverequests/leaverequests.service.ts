@@ -1,0 +1,51 @@
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { LeaveRequest } from 'src/app/models/leaverequest';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LeaveRequestsService {
+
+  private apiUrl = `${environment.apiUrl}/leave-requests`;
+
+  constructor(private http: HttpClient) { }
+
+  getAllLeaveRequests(): Observable<LeaveRequest[]> {
+    return this.http.get<LeaveRequest[]>(this.apiUrl);
+  }
+
+  findLeaveRequestById(id: number): Observable<LeaveRequest> {
+    return this.http.get<LeaveRequest>(`${this.apiUrl}/${id}`);
+  }
+
+  createLeaveRequest(leaverequest: LeaveRequest): Observable<LeaveRequest> {
+    return this.http.post<LeaveRequest>(this.apiUrl, leaverequest);
+  }
+
+  updateLeaveRequest(id: number, leaverequest: LeaveRequest): Observable<LeaveRequest> {
+    return this.http.put<LeaveRequest>(`${this.apiUrl}/${id}`, leaverequest);
+  }
+
+  deleteLeaveRequest(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    
+  }approveLeaveRequest(id: number): Observable<LeaveRequest> {
+    return this.http.put<LeaveRequest>(`${this.apiUrl}/approve/${id}`, {});
+  }
+  
+  denyLeaveRequest(id: number): Observable<LeaveRequest> {
+    return this.http.put<LeaveRequest>(`${this.apiUrl}/deny/${id}`, {});
+  }
+  
+
+}
+
+
+
+
+
+
+

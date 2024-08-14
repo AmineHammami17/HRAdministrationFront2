@@ -16,14 +16,13 @@ import { ProfileEmployeeComponent } from './profile-employee/profile-employee.co
 import { BodyEmployeeDashbordComponent } from './body-employee-dashbord/body-employee-dashbord.component';
 import { TasksComponent } from './dashboard-components/tasks/tasks.component';
 import { UsersComponent } from './dashboard-components/users/users.component';
-import { LeaverequestsComponent } from './dashboard-components/leaverequests/leaverequests.component';
 import { ComplaintsComponent } from './dashboard-components/complaints/complaints.component';
 import { FilesComponent } from './dashboard-components/files/files.component';
 import { AttendancesComponent } from './dashboard-components/attendances/attendances.component';
-import { AnnouncementsComponent } from './dashboard-components/announcements/announcements.component';
+import { AnnouncementComponent } from './dashboard-components/announcements/announcements.component';
 import { SalaryhistoryComponent } from './dashboard-components/salaryhistory/salaryhistory.component';
 import { HolidaysComponent } from './dashboard-components/holidays/holidays.component';
-
+import { LeaveRequestsComponent } from './dashboard-components/leaverequests/leaverequests.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
@@ -37,11 +36,11 @@ const routes: Routes = [
       { path: 'projects', component: ProjectsComponent },
       { path: 'tasks', component: TasksComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'leaves', component: LeaverequestsComponent },
+      { path: 'leaves', component: LeaveRequestsComponent },
       { path: 'complaints', component: ComplaintsComponent },
       { path: 'files', component: FilesComponent },
       { path: 'attendances', component: AttendancesComponent },
-      { path: 'announcements', component: AnnouncementsComponent },
+      { path: 'announcements', component: AnnouncementComponent },
       { path: 'salaryhistory', component: SalaryhistoryComponent },
       {path:'holidays', component: HolidaysComponent}
     ]

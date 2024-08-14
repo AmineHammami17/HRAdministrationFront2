@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users/users.service';
 import { User } from '../../models/user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -41,17 +42,43 @@ export class UsersComponent implements OnInit {
 
   deleteUser(id?: number): void {
     if (id !== undefined) {
-      this.userService.deleteUser(id).subscribe(
-        () => {
-          console.log('User deleted:', id);
-          this.loadUsers();
-        },
-        (error) => {
-          console.error('Error deleting user', error);
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.userService.deleteUser(id).subscribe(
+            () => {
+              Swal.fire(
+                'Deleted!',
+                'The user has been deleted.',
+                'success'
+              );
+              this.loadUsers();
+            },
+            (error) => {
+              console.error('Error deleting user', error);
+              Swal.fire(
+                'Error!',
+                'There was an error deleting the user.',
+                'error'
+              );
+            }
+          );
         }
-      );
+      });
     } else {
       console.error('User ID is undefined');
+      Swal.fire(
+        'Error!',
+        'User ID is undefined.',
+        'error'
+      );
     }
   }
 

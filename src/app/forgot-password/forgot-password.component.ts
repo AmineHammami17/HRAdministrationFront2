@@ -27,22 +27,22 @@ export class ForgotPasswordComponent {
         (response) => {
           Swal.fire({
             icon: 'success',
-            title: response,
-            text: 'Check your email ',
+            title: 'Password Reset Link Sent',
+            text: 'Check your email for further instructions.',
             confirmButtonText: 'OK'
           });
         },
         error => {
           console.error('Error sending password reset link:', error);
-            Swal.fire({
+          Swal.fire({
             icon: 'error',
             title: 'Email Verification Required',
             text: 'Please verify your email address.',
             confirmButtonText: 'OK'
           });
-
         }
       );
     }
   }
+  
 }
