@@ -7,7 +7,7 @@ import { Complaint } from '../../models/complaint';
   templateUrl: './complaints.component.html',
   styleUrls: ['./complaints.component.scss']
 })
-export class ComplaintsComponent implements OnInit {
+export class ComplaintsComponent2 implements OnInit {
   complaints: Complaint[] = [];
   showAddComplaint = false;
   showUpdateComplaint = false;

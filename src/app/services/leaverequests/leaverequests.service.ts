@@ -31,21 +31,25 @@ export class LeaveRequestsService {
 
   deleteLeaveRequest(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
-    
-  }approveLeaveRequest(id: number): Observable<LeaveRequest> {
+  }
+
+  approveLeaveRequest(id: number): Observable<LeaveRequest> {
     return this.http.put<LeaveRequest>(`${this.apiUrl}/approve/${id}`, {});
   }
-  
+
   denyLeaveRequest(id: number): Observable<LeaveRequest> {
     return this.http.put<LeaveRequest>(`${this.apiUrl}/deny/${id}`, {});
   }
-  
+  getLeaveRequestsByUserId(userId:number): Observable<LeaveRequest[]> {
+    return this.http.get<LeaveRequest[]>(`${this.apiUrl}/user/${userId}`);
+  }
 
+  getLeaveDetails(userId: number, reason: string): Observable<{ maxDays: number, currentDays: number }> {
+    return this.http.get<{ maxDays: number, currentDays: number }>(`${this.apiUrl}/details`, {
+      params: {
+        userId: userId.toString(),
+        reason: reason
+      }
+    });
+  }
 }
-
-
-
-
-
-
-

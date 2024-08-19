@@ -1,45 +1,18 @@
+<app-sidebar></app-sidebar>
 <div class="containe">
   <nav class="navbar">
-    <span class="navContent">Employee Management</span>
+    <span class="navContent"> Employee Management</span>
   </nav>
-  <nav class="navBarMenu">
-    <div class="box">
-      <div>
-        <button [routerLink]="['/home']" (click)="setActive('home')" [class.activebutton]="activeButton === 'home'" class="btn1">
-          <img src="https://img.icons8.com/?size=100&id=jPDM9Pv61iP5&format=png&color=000000" alt="">
-        </button>
-      </div>
-      <div class="line"></div>
-      <button class="back" type="button" (click)="goBack()"><</button>
-      <div class="bt-info">
-        <a [routerLink]="['/employee-dashboard/profile']" (click)="setActive('profile')" [class.activebutton]="activeButton === 'profile'" >My info</a>
-      </div>
-      <div class="bt-info">
-        <a [routerLink]="['/directory']" (click)="setActive('directory')" [class.activebutton]="activeButton === 'directory'" >Directory</a>
-      </div>
-      <div class="bt-info">
-        <a [routerLink]="['/buzz']" (click)="setActive('buzz')" [class.activebutton]="activeButton === 'buzz'" >Buzz</a>
-      </div>
-      <div class="bt-info">
-        <a [routerLink]="['/assets']" (click)="setActive('assets')" [class.activebutton]="activeButton === 'assets'" >Assets</a>
-      </div>
-    </div>
-    
-            <button class="btn-logout"  (click)="logout()"><img src="https://static-00.iconduck.com/assets.00/logout-icon-2048x1708-5s1s9mb0.png" alt=""> Log Out</button>
-    <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-      </a>
-
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="sidebar"><h2>W </h2><br><br><p><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-640h560v-80H200v80Zm0 0v-80 80Zm0 560q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v227q-19-9-39-15t-41-9v-43H200v400h252q7 22 16.5 42T491-80H200Zm520 40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm67-105 28-28-75-75v-112h-40v128l87 87Z"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-120q-83 0-141.5-58.5T80-320q0-73 45.5-127.5T240-516v83q-35 12-57.5 43T160-320q0 50 35 85t85 35q50 0 85-35t35-85v-40h235q8-9 19.5-14.5T680-380q25 0 42.5 17.5T740-320q0 25-17.5 42.5T680-260q-14 0-25.5-5.5T635-280H476q-14 69-68.5 114.5T280-120Zm400 0q-56 0-101.5-27.5T507-220h107q14 10 31 15t35 5q50 0 85-35t35-85q0-50-35-85t-85-35q-20 0-37 5.5T611-418L489-621q-21-4-35-20t-14-39q0-25 17.5-42.5T500-740q25 0 42.5 17.5T560-680v8.5q0 3.5-2 8.5l87 146q8-2 17-2.5t18-.5q83 0 141.5 58.5T880-320q0 83-58.5 141.5T680-120ZM280-260q-25 0-42.5-17.5T220-320q0-22 14-38t34-21l94-156q-29-27-45.5-64.5T300-680q0-83 58.5-141.5T500-880q83 0 141.5 58.5T700-680h-80q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 43 26 75.5t66 41.5L337-338q2 5 2.5 9t.5 9q0 25-17.5 42.5T280-260Z"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M880-80 720-240H160q-33 0-56.5-23.5T80-320v-480q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v720ZM160-320h594l46 45v-525H160v480Zm0 0v-480 480Z"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-80v-100l120-84v-144L80-280v-120l320-224v-176q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800v176l320 224v120L560-408v144l120 84v100l-200-60-200 60Z"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m520-384 56-56-96-96v-184h-80v216l120 120ZM368-249q16-48 56.5-79.5T518-360h152q24-34 37-74.5t13-85.5q0-117-81.5-198.5T440-800q-117 0-198.5 81.5T160-520q0 98 58.5 172.5T368-249ZM520-40q-58 0-102-36.5T363-168q-122-26-202.5-124T80-520q0-150 105-255t255-105q150 0 255 105t105 255q0 43-9.5 83.5T763-360q66 0 111.5 47T920-200q0 66-47 113T760-40H520Zm-80-485Zm200 325Zm-120 80h240q33 0 56.5-23.5T840-200q0-33-23.5-56.5T760-280H520q-33 0-56.5 23.5T440-200q0 33 23.5 56.5T520-120Zm0-40q-17 0-28.5-11.5T480-200q0-17 11.5-28.5T520-240q17 0 28.5 11.5T560-200q0 17-11.5 28.5T520-160Zm120 0q-17 0-28.5-11.5T600-200q0-17 11.5-28.5T640-240q17 0 28.5 11.5T680-200q0 17-11.5 28.5T640-160Zm120 0q-17 0-28.5-11.5T720-200q0-17 11.5-28.5T760-240q17 0 28.5 11.5T800-200q0 17-11.5 28.5T760-160Z"/></svg></p></div>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
 </div>
+<footer>
+  <p>WIMBEE ESPAGNE, S.L.U © 2005 - 2024, Inc. All rights reserved.</p>
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/company/wimbeetech/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.facebook.com/wimbeetech" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://x.com/wimbeetech1" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/wimbeetech/" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>

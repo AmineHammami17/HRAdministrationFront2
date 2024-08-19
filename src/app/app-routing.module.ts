@@ -16,13 +16,19 @@ import { ProfileEmployeeComponent } from './profile-employee/profile-employee.co
 import { BodyEmployeeDashbordComponent } from './body-employee-dashbord/body-employee-dashbord.component';
 import { TasksComponent } from './dashboard-components/tasks/tasks.component';
 import { UsersComponent } from './dashboard-components/users/users.component';
-import { ComplaintsComponent } from './dashboard-components/complaints/complaints.component';
+import { LeaveRequestsComponent } from './dashboard-components/leaverequests/leaverequests.component';
 import { FilesComponent } from './dashboard-components/files/files.component';
 import { AttendancesComponent } from './dashboard-components/attendances/attendances.component';
 import { AnnouncementComponent } from './dashboard-components/announcements/announcements.component';
 import { SalaryhistoryComponent } from './dashboard-components/salaryhistory/salaryhistory.component';
 import { HolidaysComponent } from './dashboard-components/holidays/holidays.component';
-import { LeaveRequestsComponent } from './dashboard-components/leaverequests/leaverequests.component';
+import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
+import { LeaveComponent } from './leave/leave.component';
+import { MesLeaveComponent } from './mes-leave/mes-leave.component';
+import { ComplaintsComponent } from './complaints/complaints.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ComplaintsComponent2 } from './dashboard-components/complaints/complaints.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
@@ -37,7 +43,7 @@ const routes: Routes = [
       { path: 'tasks', component: TasksComponent },
       { path: 'users', component: UsersComponent },
       { path: 'leaves', component: LeaveRequestsComponent },
-      { path: 'complaints', component: ComplaintsComponent },
+      { path: 'complaints', component: ComplaintsComponent2 },
       { path: 'files', component: FilesComponent },
       { path: 'attendances', component: AttendancesComponent },
       { path: 'announcements', component: AnnouncementComponent },
@@ -52,12 +58,17 @@ const routes: Routes = [
     children: [
       { path: 'profile', component: ProfileEmployeeComponent },
       { path: 'home', component: BodyEmployeeDashbordComponent },
+      { path: 'applyLeave', component: ApplyLeaveComponent },
+      { path: 'leave', component: LeaveComponent },
+      { path: 'mes-leave', component: MesLeaveComponent },
+      { path: 'Complaints', component: ComplaintsComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'side', component: SidebarComponent },
 ];
 
 @NgModule({
