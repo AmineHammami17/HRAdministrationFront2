@@ -12,6 +12,7 @@ export interface User {
   baseSalary?: number; 
   firstname?: string; 
   lastname?: string; 
+  displayPictureFilename?: string;
   job?: string; 
   datejoined?: string; 
   resetToken?: string; 

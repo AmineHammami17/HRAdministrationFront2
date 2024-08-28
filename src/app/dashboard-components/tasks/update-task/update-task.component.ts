@@ -18,6 +18,7 @@ export class UpdateTaskComponent implements OnInit {
   selectedProject: number | undefined;
   selectedUser: number | undefined;
   date: string | undefined;
+  timeSpent: number | undefined;
 
   projects: Project[] = [];
   users: User[] = [];
@@ -67,7 +68,7 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.taskId !== undefined && this.activityName && this.selectedProject !== undefined && this.selectedUser !== undefined && this.date) {
+    if (this.timeSpent !== undefined && this.taskId !== undefined && this.activityName && this.selectedProject !== undefined && this.selectedUser !== undefined && this.date) {
       const updatedTask: Task = {
         id: this.taskId,
         activityName: this.activityName,
@@ -83,7 +84,12 @@ export class UpdateTaskComponent implements OnInit {
           role: Roles.ROLE_ADMIN,
           tasks: []
         },
-        date: this.date
+        date: this.date,
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: ''
       };
 
       this.taskService.updateTask(this.taskId, updatedTask).subscribe(

@@ -34,4 +34,9 @@ export class ProjectService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
     
   }
+
+  getTotalProjects(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count-projects`);
+  }
+
 }

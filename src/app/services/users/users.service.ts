@@ -3,12 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-
   private apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) { }
@@ -45,4 +44,18 @@ export class UsersService {
     return this.http.get<User>(`${this.apiUrl}/user/authenticiated`);
   }
 
+  getTotalUsers(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count-users`);
+  }
+
+  getImage(filename: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/image/${filename}`, { responseType: 'blob' });
+  }
+
+  uploadUserProfilePicture(userId: number, file: File): Observable<User> {
+    const formData = new FormData();
+    formData.append('file', file); 
+
+    return this.http.post<User>(`${this.apiUrl}/user/${userId}/upload-picture`, formData);
+  }
 }

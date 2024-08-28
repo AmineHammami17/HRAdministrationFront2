@@ -4,16 +4,14 @@ import { AdminComponent } from './theme/layout/admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
 import { DashboardHrComponent } from './dashboard-hr/dashboard-hr.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { AdminHRGuard } from './guards/admin-hr.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { EmployeeGuard } from './guards/employee.guard';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { ProjectsComponent } from './projects/projects.component';
-import { ProfileEmployeeComponent } from './profile-employee/profile-employee.component';
-import { BodyEmployeeDashbordComponent } from './body-employee-dashbord/body-employee-dashbord.component';
+import { BodyEmployeeDashbordComponent } from './dashboard-client/body-employee-dashbord/body-employee-dashbord.component';
 import { TasksComponent } from './dashboard-components/tasks/tasks.component';
 import { UsersComponent } from './dashboard-components/users/users.component';
 import { LeaveRequestsComponent } from './dashboard-components/leaverequests/leaverequests.component';
@@ -22,12 +20,19 @@ import { AttendancesComponent } from './dashboard-components/attendances/attenda
 import { AnnouncementComponent } from './dashboard-components/announcements/announcements.component';
 import { SalaryhistoryComponent } from './dashboard-components/salaryhistory/salaryhistory.component';
 import { HolidaysComponent } from './dashboard-components/holidays/holidays.component';
-import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
-import { LeaveComponent } from './leave/leave.component';
-import { MesLeaveComponent } from './mes-leave/mes-leave.component';
-import { ComplaintsComponent } from './complaints/complaints.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { ApplyLeaveComponent } from './dashboard-client/apply-leave/apply-leave.component';
+import { LeaveComponent } from './dashboard-client/leave/leave.component';
+import { ComplaintsComponent } from './dashboard-client/complaints/complaints.component';
+import { SidebarComponent } from './dashboard-client/sidebar/sidebar.component';
 import { ComplaintsComponent2 } from './dashboard-components/complaints/complaints.component';
+import { UnauthorizedComponent } from './login/unauthorized/unauthorized.component';
+import { ProfileEmployeeComponent } from './dashboard-client/profile-employee/profile-employee.component';
+import { MesLeaveComponent } from './dashboard-client/mes-leave/mes-leave.component';
+import { TaskTrackingComponent } from './dashboard-client/task-tracking/task-tracking.component';
+import { AttendancesEmployeeComponent } from './dashboard-client/attendances/attendances.component';
+import { ComplaintListComponent } from './dashboard-client/complaint-list/complaint-list.component';
+import { AttendanceListComponent } from './dashboard-client/attendance-list/attendance-list.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -62,6 +67,10 @@ const routes: Routes = [
       { path: 'leave', component: LeaveComponent },
       { path: 'mes-leave', component: MesLeaveComponent },
       { path: 'Complaints', component: ComplaintsComponent },
+      { path: 'attendances', component:AttendancesEmployeeComponent },
+      { path: 'task', component:TaskTrackingComponent },
+      {path: 'complaint-list', component:ComplaintListComponent},
+      {path:'attendance-list',component:AttendanceListComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },

@@ -7,7 +7,6 @@ import { Holiday } from 'src/app/models/holiday';
   providedIn: 'root'
 })
 export class HolidaysService {
-
   private apiUrl = `${environment.apiUrl}/holidays`;
 
   constructor(private http: HttpClient) { }
@@ -32,4 +31,10 @@ export class HolidaysService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
     
   }
+
+  getUpcomingHolidays(): Observable<Holiday[]>{
+    return this.http.get<Holiday[]>(`${this.apiUrl}/upcoming-holidays`);
+  }
+
+
 }

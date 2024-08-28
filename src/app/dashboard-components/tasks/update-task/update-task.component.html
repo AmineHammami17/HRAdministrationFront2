@@ -16,7 +16,21 @@
           Activity name is required
         </div>
       </div>
-  
+      <div class="form-group">
+        <label for="timeSpent">Time Spent</label>
+        <input
+          type="text"
+          id="timeSpent"
+          [(ngModel)]="timeSpent"
+          name="timeSpent"
+          required
+          #timeSpentInput="ngModel"
+          [class.invalid]="timeSpentInput.invalid && (timeSpentInput.dirty || timeSpentInput.touched)"
+        />
+        <div *ngIf="timeSpentInput.invalid && (timeSpentInput.dirty || timeSpentInput.touched)" class="error-message">
+          Time Spent is required
+        </div>
+      </div>
       <div class="form-group">
         <label for="project">Project</label>
         <select

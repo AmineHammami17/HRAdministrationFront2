@@ -1,7 +1,7 @@
-// announcement.component.ts
 import { Component, OnInit } from '@angular/core';
 import { AnnouncementsService } from 'src/app/services/announcements/announcements.service';
 import { Announcement } from 'src/app/models/announcement';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-announcements',
@@ -13,39 +13,20 @@ export class AnnouncementComponent implements OnInit {
   showUpdateAnnouncement = false;
   announcementIdToUpdate: number | undefined;
   announcements: Announcement[] = [];
-  imageUrls: { [id: number]: string } = {};
+  imageUrls: { [key: number]: any } = {}; 
 
-  constructor(private announcementsService: AnnouncementsService) { }
+  constructor(private announcementsService: AnnouncementsService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.loadAnnouncements();
   }
 
   loadAnnouncements(): void {
-    this.announcementsService.getAllAnnouncements().subscribe(
-      (data) => {
-        this.announcements = data;
-        this.loadImages();
-      },
-      (error) => {
-        console.error('Error fetching announcements', error);
-      }
-    );
-  }
-
-  loadImages(): void {
-    this.announcements.forEach(announcement => {
-      if (announcement.displayPicture) {
-        this.announcementsService.getAnnouncementImage(announcement.displayPicture).subscribe(
-          (blob: Blob) => {
-            const url = URL.createObjectURL(blob);
-            this.imageUrls[announcement.id] = url;
-          },
-          (error) => {
-            console.error('Error fetching announcement image', error);
-          }
-        );
-      }
+    this.announcementsService.getAllAnnouncements().subscribe((announcements: Announcement[]) => {
+      this.announcements = announcements;
+      this.announcements.forEach(announcement => {
+        this.loadImage(announcement.displayPictureFilename, announcement.id);
+      });
     });
   }
 
@@ -62,6 +43,13 @@ export class AnnouncementComponent implements OnInit {
     } else {
       console.error('Announcement ID is undefined');
     }
+  }
+
+  loadImage(filename: string, announcementId: number): void {
+    this.announcementsService.getImage(filename).subscribe(imageBlob => {
+      const objectURL = URL.createObjectURL(imageBlob);
+      this.imageUrls[announcementId] = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    });
   }
 
   toggleAddAnnouncement(): void {

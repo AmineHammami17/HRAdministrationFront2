@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AnnouncementsService } from 'src/app/services/announcements/announcements.service';
 import { Announcement } from 'src/app/models/announcement';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-add-announcement',
   templateUrl: './add-announcement.component.html',
@@ -14,12 +14,13 @@ export class AddAnnouncementComponent {
     id: 0,
     title: '',
     description: '',
-    displayPicture: 0,
+    date: '',
+    displayPictureFilename: ''
   };
 
   selectedFile: File | null = null;
 
-  constructor(private announcementsService: AnnouncementsService) {}
+  constructor(private announcementsService: AnnouncementsService , private datePipe:DatePipe) {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -30,17 +31,18 @@ export class AddAnnouncementComponent {
 
   onSubmit(): void {
     if (this.selectedFile) {
-      this.announcementsService.uploadAnnouncement(
-        this.announcement.title,
-        this.announcement.description,
-        this.selectedFile
-      ).subscribe(() => {
+      const formData = new FormData();
+      formData.append('title', this.announcement.title);
+      formData.append('description', this.announcement.description);
+      formData.append('date', this.announcement.date);
+      formData.append('file', this.selectedFile);
+  
+      this.announcementsService.uploadAnnouncement(formData).subscribe(() => {
         this.closeAddAnnouncement.emit();
       });
     }
   }
-
-  onCancel(): void {
+    onCancel(): void {
     this.closeAddAnnouncement.emit();
   }
 }

@@ -1,45 +1,10 @@
-// angular import
-import { Component, ViewChild } from '@angular/core';
-
-// project import
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { ApexTheme, NgApexchartsModule } from 'ng-apexcharts';
-
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexNonAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexStroke,
-  ApexYAxis,
-  ApexLegend,
-  ApexFill,
-  ApexGrid,
-  ApexPlotOptions,
-  ApexTooltip,
-  ApexMarkers
-} from 'ng-apexcharts';
-
-export type ChartOptions = {
-  series: ApexAxisChartSeries | ApexNonAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  stroke: ApexStroke;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  yaxis: ApexYAxis;
-  tooltip: ApexTooltip;
-  labels: string[];
-  colors: string[];
-  legend: ApexLegend;
-  fill: ApexFill;
-  grid: ApexGrid;
-  markers: ApexMarkers;
-  theme: ApexTheme;
-};
-
+import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
+import { ProjectService } from 'src/app/services/projects/projects.service';
+import { UsersService } from 'src/app/services/users/users.service';
+import { AttendancesService } from 'src/app/services/attendances/attendances.service';
+import { HolidaysService } from 'src/app/services/holidays/holidays.service';
 @Component({
   selector: 'app-dash-analytics',
   standalone: true,
@@ -47,47 +12,104 @@ export type ChartOptions = {
   templateUrl: './dash-analytics.component.html',
   styleUrls: ['./dash-analytics.component.scss']
 })
-export default class DashAnalyticsComponent {
+export default class DashAnalyticsComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
   @ViewChild('customerChart') customerChart!: ChartComponent;
-  chartOptions!: Partial<ChartOptions>;
-  chartOptions_1!: Partial<ChartOptions>;
-  chartOptions_2!: Partial<ChartOptions>;
-  chartOptions_3!: Partial<ChartOptions>;
 
-  constructor() {}
+  totalUsers: number = 0;
+  totalProjects: number = 0;
+  totalAttendances: number = 0;
+  upcomingHolidays: { name: string, date: Date }[] = [];
+
   cards = [
     {
       background: 'bg-c-blue',
-      title: 'Orders Received',
-      icon: 'icon-shopping-cart',
-      text: 'Completed Orders',
-      number: '486',
-      no: '351'
+      title: 'Total Users',
+      icon: 'icon-user',
+      number: this.totalUsers,
+      text: 'Total number of users in the system',
+      no: ''
     },
     {
       background: 'bg-c-green',
-      title: 'Total Sales',
-      icon: 'icon-tag',
-      text: 'This Month',
-      number: '1641',
-      no: '213'
+      title: 'Total Projects',
+      icon: 'icon-briefcase',
+      number: this.totalProjects,
+      text: 'Total number of projects',
+      no: ''
     },
     {
       background: 'bg-c-yellow',
-      title: 'Revenue',
-      icon: 'icon-repeat',
-      text: 'This Month',
-      number: '$42,56',
-      no: '$5,032'
-    },
-    {
-      background: 'bg-c-red',
-      title: 'Total Profit',
-      icon: 'icon-shopping-cart',
-      text: 'This Month',
-      number: '$9,562',
-      no: '$542'
+      title: 'Total Attendances',
+      icon: 'icon-calendar',
+      number: this.totalAttendances,
+      text: 'Total number of attendance records',
+      no: ''
     }
   ];
+
+  constructor(
+    private userService: UsersService,
+    private projectService: ProjectService,
+    private attendanceService: AttendancesService,
+    private holidayService: HolidaysService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadDashboardData();
+    this.loadUpcomingHolidays();
+  }
+
+  loadDashboardData() {
+    this.userService.getTotalUsers().subscribe((data: number) => {
+      this.totalUsers = data;
+      this.updateCards();
+    });
+
+    this.projectService.getTotalProjects().subscribe((data: number) => {
+      this.totalProjects = data;
+      this.updateCards();
+    });
+
+    this.attendanceService.getTotalAttendances().subscribe((data: number) => {
+      this.totalAttendances = data;
+      this.updateCards();
+    });
+  }
+
+  loadUpcomingHolidays() {
+    this.holidayService.getUpcomingHolidays().subscribe((data: any[]) => {
+      this.upcomingHolidays = data;
+      console.log(data, "Upcoming Holidays Data"); 
+    });
+  }
+
+  updateCards() {
+    this.cards = [
+      {
+        background: 'bg-c-blue',
+        title: 'Total Users',
+        icon: 'icon-user',
+        number: this.totalUsers,
+        text: 'Total number of users in the system',
+        no: ''
+      },
+      {
+        background: 'bg-c-green',
+        title: 'Total Projects',
+        icon: 'icon-briefcase',
+        number: this.totalProjects,
+        text: 'Total number of projects',
+        no: ''
+      },
+      {
+        background: 'bg-c-yellow',
+        title: 'Total Attendances',
+        icon: 'icon-calendar',
+        number: this.totalAttendances,
+        text: 'Total number of attendance records',
+        no: ''
+      }
+    ];
+  }
 }

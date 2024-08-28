@@ -8,14 +8,15 @@ import { Announcement } from 'src/app/models/announcement';
   styleUrls: ['./update-announcement.component.scss']
 })
 export class UpdateAnnouncementComponent implements OnInit {
-  @Input() announcementId!: number; // Announcement ID passed as input
+  @Input() announcementId!: number;
   @Output() closeUpdateAnnouncement = new EventEmitter<void>();
 
   announcement: Announcement = {
     id: 0,
     title: '',
     description: '',
-    displayPicture: 0,
+    date: '',
+    displayPictureFilename: ''
   };
 
   selectedFile: File | null = null;
@@ -50,7 +51,7 @@ export class UpdateAnnouncementComponent implements OnInit {
       formData.append('title', this.announcement.title);
       formData.append('description', this.announcement.description);
       formData.append('file', this.selectedFile);
-
+      formData.append('date', this.announcement.date);
       this.announcementsService.updateAnnouncement(this.announcement.id, formData)
         .subscribe(() => {
           this.closeUpdateAnnouncement.emit();

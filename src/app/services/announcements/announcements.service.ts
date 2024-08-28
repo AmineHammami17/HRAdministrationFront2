@@ -17,13 +17,8 @@ export class AnnouncementsService {
     return this.http.get<Announcement[]>(this.apiUrl);
   }
 
-  uploadAnnouncement(title: string, description: string, file: File): Observable<Announcement> {
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('file', file);
-
-    return this.http.post<Announcement>(`${this.apiUrl}/upload`, formData);
+  uploadAnnouncement(formData : FormData): Observable<Announcement> {
+    return this.http.post<Announcement>(`${this.apiUrl}/upload`,formData);
   }
 
   getAnnouncementById(id: number): Observable<Announcement> {
@@ -41,8 +36,10 @@ export class AnnouncementsService {
   deleteAnnouncement(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  getAnnouncementImage(oid: number): Observable<Blob> {
-    return this.http.get(`${this.apiUrl}/image/${oid}`, { responseType: 'blob' });
+  getImage(filename: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/image/${filename}`, { responseType: 'blob' });
   }
+
+  
   
 }

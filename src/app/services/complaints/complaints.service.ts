@@ -33,4 +33,13 @@ export class ComplaintsService {
   deleteComplaint(id?: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
     
-  }}
+  }
+  getComplaintsByUserId(userId: number): Observable<Complaint[]> {
+    return this.http.get<Complaint[]>(`${this.apiUrl}/user/${userId}`);
+  }
+
+
+
+
+
+}

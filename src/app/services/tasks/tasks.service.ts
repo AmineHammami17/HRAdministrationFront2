@@ -35,4 +35,12 @@ export class TaskService {
   deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  GetTasksWeek(date:string,userId:number):Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/week`, {params:{
+      userId,
+      date
+    }});
+  }
+  
 }

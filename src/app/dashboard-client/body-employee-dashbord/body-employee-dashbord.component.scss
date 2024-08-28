@@ -1,0 +1,317 @@
+.body {
+  display: flex;
+  flex-wrap: nowrap; 
+  padding-left: 150px;
+  min-height: 100vh; 
+}
+
+.actualites {
+  display: block;
+  flex: 1; 
+}
+
+.actualites-title {
+  font-size: 18px;
+  background-color: white;
+  width: 850px;
+  margin-top: 50px;
+  height: 40px;
+  padding: 10px 10px 10px 20px;
+  font-weight: 600;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.actualites-body {
+  font-size: 15px;
+  background-color: white;
+  width: 850px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  position: relative; 
+}
+
+.calendar {
+  display: block;
+}
+
+.month {
+  height: 20px;
+  width: 50px;
+  background-color: #5c8eb6;
+  color: white;
+  text-align: center;
+  border-radius: 3px 3px 0 0;
+}
+
+.day {
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 0 0 3px 3px;
+}
+
+.announcement-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative; 
+}
+
+.announcement-details p {
+  font-weight: bold;
+}
+
+.expand-button {
+  position: absolute;
+  right: 10px; 
+  top: 0;
+}
+
+button {
+  background-color: #5c8eb6;
+  color: white;
+  border: none;
+  padding: 3px 7px; 
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px; 
+}
+
+button:hover {
+  background-color: #4a7b99;
+}
+
+.announcement-expansion {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-expansion p {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.6; 
+}
+
+.announcement-expansion img {
+  margin: 10px auto; 
+  display: block; 
+  border-radius: 5px;
+}
+
+.profile {
+  width: 250px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  top: 50px; 
+  height: fit-content;
+  margin-right: 60px;
+}
+
+.img-profile {
+  margin-top: 20px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.img-profile img {
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+}
+
+.profile-body h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile-body h3 {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 5px 0;
+  color: #5c5c5c;
+}
+
+.footer-profile {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.footer-profile:hover {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+@media (max-width: 768px) {
+  .body {
+    flex-direction: column;
+    padding-left: 15px; /* Reduced padding */
+  }
+
+  .actualites-title {
+    font-size: 16px; /* Reduced font size */
+    width: 100%; /* Full width */
+    margin-top: 20px; /* Reduced margin-top */
+    height: auto; /* Adjust height */
+    padding: 8px; /* Reduced padding */
+  }
+
+  .actualites-body {
+    font-size: 13px; /* Reduced font size */
+    width: 100%; /* Full width */
+    margin-top: 10px; /* Reduced margin-top */
+    padding: 8px; /* Reduced padding */
+    gap: 20px; /* Reduced gap */
+  }
+
+  .month {
+    height: 15px; /* Reduced height */
+    width: 40px; /* Reduced width */
+  }
+
+  .day {
+    width: 40px; /* Reduced width */
+    height: 25px; /* Reduced height */
+  }
+
+  .announcement-details {
+    flex-direction: column;
+    padding: 5px; /* Reduced padding */
+  }
+
+  .expand-button {
+    right: 5px; /* Reduced right position */
+  }
+
+  button {
+    padding: 2px 5px; /* Reduced padding */
+    font-size: 10px; /* Reduced font size */
+  }
+
+  .announcement-expansion {
+    margin-top: 5px; /* Reduced margin-top */
+    padding: 8px; /* Reduced padding */
+    border-radius: 3px; /* Reduced border-radius */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Reduced box-shadow */
+  }
+
+  .announcement-expansion p {
+    font-size: 12px; /* Reduced font size */
+    line-height: 1.4; /* Reduced line-height */
+  }
+
+  .img-profile {
+    width: 60px; /* Reduced width */
+    height: 60px; /* Reduced height */
+  }
+
+  .profile {
+    width: 100%; /* Full width */
+    margin-top: 20px; /* Reduced margin-top */
+    padding: 10px; /* Reduced padding */
+    margin-right: 0; /* Removed margin-right */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced box-shadow */
+  }
+
+  .profile-body h1 {
+    font-size: 18px; /* Reduced font size */
+  }
+
+  .profile-body h3 {
+    font-size: 14px; /* Reduced font size */
+  }
+
+  .footer-profile {
+    font-size: 12px; /* Reduced font size */
+    margin-top: 10px; /* Reduced margin-top */
+  }
+}
+
+@media (max-width: 480px) {
+  .body {
+    padding-left: 5px; /* Further reduced padding */
+  }
+
+  .actualites-title {
+    font-size: 14px; /* Further reduced font size */
+    padding: 5px; /* Further reduced padding */
+  }
+
+  .actualites-body {
+    font-size: 12px; /* Further reduced font size */
+    padding: 5px; /* Further reduced padding */
+    gap: 10px; /* Further reduced gap */
+  }
+
+  .month {
+    height: 12px; /* Further reduced height */
+    width: 35px; /* Further reduced width */
+  }
+
+  .day {
+    width: 35px; /* Further reduced width */
+    height: 20px; /* Further reduced height */
+  }
+
+  .announcement-details {
+    padding: 3px; /* Further reduced padding */
+  }
+
+  button {
+    padding: 1px 3px; /* Further reduced padding */
+    font-size: 8px; /* Further reduced font size */
+  }
+
+  .announcement-expansion {
+    margin-top: 3px; /* Further reduced margin-top */
+    padding: 5px; /* Further reduced padding */
+  }
+
+  .announcement-expansion p {
+    font-size: 10px; /* Further reduced font size */
+  }
+
+  .img-profile {
+    width: 50px; /* Further reduced width */
+    height: 50px; /* Further reduced height */
+  }
+
+  .profile {
+    padding: 5px; /* Further reduced padding */
+  }
+
+  .profile-body h1 {
+    font-size: 16px; /* Further reduced font size */
+  }
+
+  .profile-body h3 {
+    font-size: 12px; /* Further reduced font size */
+  }
+
+  .footer-profile {
+    font-size: 10px; /* Further reduced font size */
+  }
+}

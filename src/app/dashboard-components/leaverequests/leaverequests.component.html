@@ -30,7 +30,8 @@
             <td data-label="End Date">{{ leaveRequest.endDate }}</td>
             <td data-label="Reason">{{ leaveRequest.reason }}</td>
             <td data-label="User">{{ leaveRequest.user.firstname }} {{ leaveRequest.user.lastname }}</td>
-            <td data-label="Status">{{ leaveRequest.status }}</td>
+            <td data-label="Status">
+            {{ leaveRequest.status }}</td>
             <td data-label="Actions" class="actions-column">
               <button class="btn btn-update" (click)="toggleUpdateLeaveRequest(leaveRequest.requestId)">
                 <i class="feather icon-edit"></i>

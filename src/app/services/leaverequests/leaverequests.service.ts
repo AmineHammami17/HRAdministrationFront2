@@ -52,4 +52,8 @@ export class LeaveRequestsService {
       }
     });
   }
+  getEmployeesCurrentlyOnLeave(): Observable<LeaveRequest[]> {
+    return this.http.get<LeaveRequest[]>(`${this.apiUrl}/employees-on-leave`);
+  }
+
 }

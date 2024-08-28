@@ -16,6 +16,7 @@ export class AddTaskComponent implements OnInit {
 
   activityName: string = '';
   taskDate: string = '';
+  timeSpent: number = 0;
   selectedProject: number | undefined;
   selectedUser: number | undefined;
   projects: Project[] = [];
@@ -80,7 +81,12 @@ export class AddTaskComponent implements OnInit {
         password: '',
         role: Roles.ROLE_EMPLOYEE,
         tasks: []
-      }
+      },
+      monday: '',
+      tuesday: '',
+      wednesday: '',
+      thursday: '',
+      friday: ''
     };
 
     this.taskService.createTask(newTask).subscribe(

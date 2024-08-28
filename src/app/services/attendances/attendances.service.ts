@@ -55,4 +55,15 @@ export class AttendancesService {
   updateAttendance(attendanceId:number, attendance: Attendance):Observable<Attendance>{
     return this.http.put<Attendance>(`${this.apiUrl}/${attendanceId}`, attendance);
 }
+
+getTotalAttendances(): Observable<number> {
+  return this.http.get<number>(`${this.apiUrl}/count-attendances`);
+}
+testAttendanceToday(){
+  return this.http.get(this.apiUrl+"/test");
+}
+getAttendanceByDate(){
+  return this.http.get(this.apiUrl+"/getByDate",{});
+}
+
 }

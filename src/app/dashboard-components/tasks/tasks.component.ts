@@ -18,21 +18,28 @@ export class TasksComponent implements OnInit {
   tasks: Task[] = [];
   projects: Project[] = [];
   users: User[] = [];
-  newTask: Task = { activityName: '', date: '', project: {
-    id: 0,
-    name: '',
-    tasks: []
-  }, user: {
-    id: 0,
-    email: '',
-    password: '',
-    role: Roles.ROLE_EMPLOYEE,
-    baseSalary: 0,
-    firstname: '',
-    lastname: '',
-    job: '',
-    tasks: []
-  } };
+  newTask: Task = {
+    activityName: '', date: '', project: {
+      id: 0,
+      name: '',
+      tasks: []
+    }, user: {
+      id: 0,
+      email: '',
+      password: '',
+      role: Roles.ROLE_EMPLOYEE,
+      baseSalary: 0,
+      firstname: '',
+      lastname: '',
+      job: '',
+      tasks: []
+    },
+    monday: '',
+    tuesday: '',
+    wednesday: '',
+    thursday: '',
+    friday: ''
+  };
 
   constructor(
     private taskService: TaskService,
@@ -130,7 +137,12 @@ export class TasksComponent implements OnInit {
     if (this.showAddTask) {
       this.showUpdateTask = false;
       this.taskIdToUpdate = undefined;
-      this.newTask = { activityName: '', date: '', project: {
+      this.newTask = { activityName: '', date: '',monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+    project: {
         name: '',
         tasks: []
       }, user: {
@@ -143,6 +155,7 @@ export class TasksComponent implements OnInit {
       } };
     }
   }
+
 
   onAddTaskClose(): void {
     this.showAddTask = false;

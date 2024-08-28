@@ -105,7 +105,6 @@ export class LeaveRequestsComponent implements OnInit {
   
   denyLeaveRequest(id?: number): void {
     if (id !== undefined) {
-      // Show confirmation dialog
       Swal.fire({
         title: 'Are you sure?',
         text: "Do you want to deny this leave request?",
