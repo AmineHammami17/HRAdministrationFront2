@@ -3,6 +3,7 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { navbarData } from './nav-data';
 import { ButtonService } from 'src/app/services/shared/service.service';
+import { Router } from '@angular/router';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -48,7 +49,7 @@ export class SidebarComponent {
   navData = navbarData;
 
   constructor(
-    private buttonService: ButtonService, ) {}
+    private buttonService: ButtonService, private router:Router ) {}
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
@@ -77,6 +78,17 @@ export class SidebarComponent {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+
+  }
+
+  logout() {
+    sessionStorage.removeItem('token')
+   this.router.navigate(['/login']);
+  }
+  onNavItemClicked(itemId: string): void {
+    if (itemId === 'logout') {
+      this.logout();
+    }
   }
 
 }

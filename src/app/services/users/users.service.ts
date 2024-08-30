@@ -28,11 +28,13 @@ export class UsersService {
     return this.http.get<User>(`${this.apiUrl}/user/employee/${id}`);
   }
 
-  addUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/signup`, user);
+  addUser(reqResPayload: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.apiUrl}/signup`, reqResPayload, { headers });
   }
-
-  updateUser(userId: number, user: User): Observable<User> {
+    updateUser(userId: number, user: User): Observable<User> {
     return this.http.put<User>(`${this.apiUrl}/user/update-user/`, user);
   }
 
@@ -58,4 +60,5 @@ export class UsersService {
 
     return this.http.post<User>(`${this.apiUrl}/user/${userId}/upload-picture`, formData);
   }
+  
 }

@@ -136,11 +136,11 @@
           transition: background-color 0.3s ease, transform 0.2s ease;
   
           &-update {
-            background-color: #007bff;
+            background-color: #4CAF50;
             color: white;
   
             &:hover {
-              background-color: #0056b3;
+              background-color: #048018;
               transform: translateY(-2px);
             }
   
@@ -150,7 +150,7 @@
           }
   
           &-delete {
-            background-color: #dc3545;
+            background-color: #f44336;
             color: white;
   
             &:hover {

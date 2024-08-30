@@ -31,8 +31,7 @@ export const navbarData = [
     label: 'Complaints'
   },
   {
-
-    routeLink: '/logout',
+    id: 'logout',
     icon: 'fa-solid fa-sign-out',
     label: 'Logout'
   },

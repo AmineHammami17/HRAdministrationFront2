@@ -32,6 +32,14 @@ import { TaskTrackingComponent } from './dashboard-client/task-tracking/task-tra
 import { AttendancesEmployeeComponent } from './dashboard-client/attendances/attendances.component';
 import { ComplaintListComponent } from './dashboard-client/complaint-list/complaint-list.component';
 import { AttendanceListComponent } from './dashboard-client/attendance-list/attendance-list.component';
+import { EmployeesHrComponent } from './dashboard-hr/employees-hr/employees-hr.component';
+import { UpdateEmployeeHrComponent } from './dashboard-hr/employees-hr/update-employee-hr/update-employee-hr.component';
+import { AttendancesHrComponent } from './dashboard-hr/attendances-hr/attendances-hr.component';
+import { AttendanceListHrComponent } from './dashboard-hr/attendance-list-hr/attendance-list-hr.component';
+import { BodyHrDashboardComponent } from './dashboard-hr/body-hr-dashboard/body-hr-dashboard.component';
+import { ProfileHrComponent } from './dashboard-hr/profile-hr/profile-hr.component';
+import { LeaveListHrComponent } from './dashboard-hr/leave-list-hr/leave-list-hr.component';
+import { EmployeesOnLeaveComponent } from './dashboard-hr/employees-on-leave/employees-on-leave.component';
 
 
 const routes: Routes = [
@@ -58,7 +66,24 @@ const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent },
-  { path: 'admin-hr-dashboard', component: DashboardHrComponent, canActivate: [AuthGuard, AdminHRGuard] },
+  { path: 'admin-hr-dashboard', component: DashboardHrComponent, canActivate: [AuthGuard, AdminHRGuard],
+    children: [
+      { path: 'profile', component: ProfileHrComponent },
+      { path: 'home', component: BodyHrDashboardComponent },
+      { path: 'applyLeave', component: ApplyLeaveComponent },
+      { path: 'leave', component: LeaveListHrComponent },
+      { path: 'employees-on-leave', component: EmployeesOnLeaveComponent },
+      { path: 'Complaints', component: ComplaintsComponent },
+      { path: 'attendances-hr', component:AttendancesHrComponent },
+      { path: 'task', component:TaskTrackingComponent },
+      {path: 'complaint-list', component:ComplaintListComponent},
+      {path:'attendance-list-hr',component:AttendanceListHrComponent},
+      {path:'employees',component:EmployeesHrComponent},
+      { path: 'update-employee/:id', component: UpdateEmployeeHrComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
+    ]
+
+   },
   { path: 'employee-dashboard', component: DashboardClientComponent, canActivate: [AuthGuard, EmployeeGuard],
     children: [
       { path: 'profile', component: ProfileEmployeeComponent },

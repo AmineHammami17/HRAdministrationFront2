@@ -28,22 +28,23 @@ export class AddUserComponent {
   constructor(private userService: UsersService, private router: Router) {}
 
   onSubmit(): void {
-    const userPayload: User = {
+    const reqResPayload = {
       email: this.user.email,
       password: this.user.password,
       role: this.user.role,
-      baseSalary: this.user.baseSalary,
-      firstname: this.user.firstname,
-      lastname: this.user.lastname,
-      job: this.user.job,
-      datejoined: this.user.datejoined,
-      resetToken: this.user.resetToken,
-      tasks: this.user.tasks
+      user: {
+        firstname: this.user.firstname,
+        lastname: this.user.lastname,
+        job: this.user.job,
+        datejoined: this.user.datejoined,
+        baseSalary: this.user.baseSalary,
+        resetToken: this.user.resetToken
+      }
     };
 
-    console.log('Submitting user:', userPayload); 
+    console.log('Submitting registration request:', reqResPayload);
 
-    this.userService.addUser(userPayload).subscribe(
+    this.userService.addUser(reqResPayload).subscribe(
       (response) => {
         console.log('User added successfully:', response);
         this.closeAddUser.emit();
@@ -53,7 +54,6 @@ export class AddUserComponent {
       }
     );
   }
-
   onCancel(): void {
     this.closeAddUser.emit();
   }

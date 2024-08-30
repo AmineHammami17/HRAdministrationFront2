@@ -5,6 +5,8 @@ import { Announcement } from '../../models/announcement';
 import { AnnouncementsService } from 'src/app/services/announcements/announcements.service';
 import { UsersService } from 'src/app/services/users/users.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ButtonService } from 'src/app/services/shared/service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-body-employee-dashbord',
@@ -17,16 +19,24 @@ export class BodyEmployeeDashbordComponent implements OnInit {
   profileImage: string | ArrayBuffer | null = null;
   expandedAnnouncements: boolean[] = [];
   imageUrls: { [key: number]: any } = {}; 
+  private subscription: Subscription | undefined;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private announcementsService: AnnouncementsService,
     private userService: UsersService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private buttonService : ButtonService,
+
   ) {}
 
   ngOnInit(): void {
+    localStorage.setItem('Toggle','1');
+    this.buttonService.buttonClick$.subscribe(() => {
+      this.onGlobalButtonClick();
+    });
+
     this.authService.GetuserLogin().subscribe(
       data => {
         console.log(data);
@@ -39,6 +49,7 @@ export class BodyEmployeeDashbordComponent implements OnInit {
     );
 
     this.loadAnnouncements();
+    
   }
 
   loadAnnouncements(): void {
@@ -90,4 +101,34 @@ export class BodyEmployeeDashbordComponent implements OnInit {
       console.log('No profile image filename available');
     }
   }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+  onGlobalButtonClick() {
+    let toggle= localStorage.getItem("toggle");
+    const elements = document.getElementsByClassName("body");
+    const elements2 = document.getElementsByClassName("profile");
+
+    if(toggle==="0"){
+     Array.from(elements).forEach((element) => {
+       (element as HTMLElement).style.cssText = "margin-left: 150px;";
+     });
+     Array.from(elements2).forEach((element) => {
+      (element as HTMLElement).style.cssText = "margin-left: 0px;";
+    });}
+     else{
+      Array.from(elements).forEach((element) => {
+        (element as HTMLElement).style.cssText = "margin-left:0px;";
+      });
+      Array.from(elements2).forEach((element) => {
+        (element as HTMLElement).style.cssText = "margin-left:0px;";
+      });}
+
+     }
+
+
+
 }

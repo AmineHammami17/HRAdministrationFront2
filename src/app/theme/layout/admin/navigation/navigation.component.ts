@@ -19,14 +19,12 @@ export class NavigationComponent {
       this.NavMobCollapse.emit();
     }
   }
-  onNavItemClicked(itemId: string): void {
+  onNavItemClicked(itemId: string | undefined): void {
     if (itemId === 'logout') {
       this.logout();
-    } else {
-      this.navMobCollapse();
     }
   }
-
+  
   logout(): void {
     this.storageService.clean(); 
     this.router.navigate(['/login']);

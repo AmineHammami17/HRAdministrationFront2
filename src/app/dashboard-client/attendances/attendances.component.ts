@@ -24,11 +24,7 @@ export class AttendancesEmployeeComponent implements OnInit {
   constructor(private attendancesService: AttendancesService , private buttonService : ButtonService) {}
 
   ngOnInit(): void {
-    localStorage.setItem('Toggle','1');
     this.initializePage();
-    this.buttonService.buttonClick$.subscribe(() => {
-      this.onGlobalButtonClick();
-    });
     }
 
   initializePage() {
@@ -118,13 +114,13 @@ export class AttendancesEmployeeComponent implements OnInit {
     console.log('Le bouton a été cliqué!');
     let toggle= localStorage.getItem("toggle");
     const elements = document.getElementsByClassName("attendance");
-    if(toggle==="1"){   // Vérifie s'il y a au moins un élément
+    if(toggle==="1"){
      Array.from(elements).forEach((element) => {
-       (element as HTMLElement).style.cssText = "width:900px;";
+       (element as HTMLElement).style.cssText = "width:700px;";
      });}
      else{
       Array.from(elements).forEach((element) => {
-        (element as HTMLElement).style.cssText = "width: 700px;";
+        (element as HTMLElement).style.cssText = "width: 900px;";
       });}
 
      }

@@ -218,3 +218,25 @@ input.ng-invalid.ng-touched {
 visibility:visible;
 }
 }
+@media only screen and (max-width: 600px) {
+  .login {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .btn {
+    width: 80%;
+  }
+
+  .social-icons a {
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 80%;
+  }
+
+  .weebe {
+    width: 80%;
+  }
+}

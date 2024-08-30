@@ -1,17 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { ButtonService } from 'src/app/services/shared/service.service';
 
 @Component({
   selector: 'app-nav-bar-complaints',
   templateUrl: './nav-bar-complaints.component.html',
   styleUrl: './nav-bar-complaints.component.scss'
 })
-export class NavBarComplaintsComponent {
-  constructor(private  authService: AuthService,private router: Router,private location: Location) {
+export class NavBarComplaintsComponent implements OnInit {
+  constructor(private  authService: AuthService,private router: Router,private location: Location , private buttonService : ButtonService) {
+  }
+  ngOnInit(): void {
+    localStorage.setItem('Toggle','1');
+    this.buttonService.buttonClick$.subscribe(() => {
+      this.onGlobalButtonClick();
+    });
   }
   activeButton: string = '';
+  private subscription: Subscription | undefined;
+
   setActive(button: string): void {
     this.activeButton = button;
   }
@@ -23,5 +33,36 @@ export class NavBarComplaintsComponent {
    this.router.navigate(['/login']);
   }
 
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+  onGlobalButtonClick() {
+    let toggle= localStorage.getItem("toggle");
+    const elements = document.getElementsByClassName("box");
+    const elements2 = document.getElementsByClassName("logout");
+
+    if(toggle==="1"){  
+     Array.from(elements).forEach((element) => {
+       (element as HTMLElement).style.cssText = "margin-left: 0px;";
+     });
+     Array.from(elements2).forEach((element) => {
+      (element as HTMLElement).style.cssText = "margin-left: 900px;";
+    });
+    
+    }
+     
+     else{
+      Array.from(elements).forEach((element) => {
+        (element as HTMLElement).style.cssText = "margin-left:200px;";
+      });
+      Array.from(elements2).forEach((element) => {
+        (element as HTMLElement).style.cssText = "margin-left:700px;";
+      });
+    
+    }
+
+     }
 
 }

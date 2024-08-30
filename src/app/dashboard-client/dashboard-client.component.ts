@@ -4,18 +4,25 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Location } from '@angular/common';
 import {jwtDecode, JwtPayload} from 'jwt-decode';
+import { Subscription } from 'rxjs';
+import { ButtonService } from '../services/shared/service.service';
 @Component({
   selector: 'app-dashboard-client',
   templateUrl: './dashboard-client.component.html',
   styleUrl: './dashboard-client.component.scss'
 })
 export class DashboardClientComponent implements OnInit{
-  constructor(private  authService: AuthService,private router: Router,private location: Location) {
+  constructor(private  authService: AuthService,private router: Router,private location: Location, private buttonService : ButtonService) {
   }
   user: any;
   activeButton: string = '';
+  private subscription: Subscription | undefined;
 
   ngOnInit(): void {
+    localStorage.setItem('Toggle','1');
+    this.buttonService.buttonClick$.subscribe(() => {
+      this.onGlobalButtonClick();
+    });
     this.authService.GetuserLogin().subscribe(
       data => {
         console.log(data);
@@ -37,5 +44,25 @@ export class DashboardClientComponent implements OnInit{
     sessionStorage.removeItem('token')
    this.router.navigate(['/login']);
   }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+  onGlobalButtonClick() {
+    console.log('Le bouton a été cliqué!');
+    let toggle= localStorage.getItem("toggle");
+    const elements = document.getElementsByClassName("attendance");
+    if(toggle==="1"){   
+     Array.from(elements).forEach((element) => {
+       (element as HTMLElement).style.cssText = "width:900px;";
+     });}
+     else{
+      Array.from(elements).forEach((element) => {
+        (element as HTMLElement).style.cssText = "width: 700px;";
+      });}
+
+     }
   }
 

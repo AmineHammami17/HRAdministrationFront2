@@ -16,7 +16,6 @@ export class AddTaskComponent implements OnInit {
 
   activityName: string = '';
   taskDate: string = '';
-  timeSpent: number = 0;
   selectedProject: number | undefined;
   selectedUser: number | undefined;
   projects: Project[] = [];

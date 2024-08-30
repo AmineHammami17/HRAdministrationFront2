@@ -31,7 +31,7 @@ export class ComplaintsComponent {
     this.complaintsService.createComplaint(this.complaint).subscribe(
       (res) => {
         console.log('Complaint created successfully:', res);
-        this.router.navigate(['/complaints-list']);
+        this.router.navigate(['/complaint-list']);
       },
       (err) => {
         console.error('Error creating complaint:', err);

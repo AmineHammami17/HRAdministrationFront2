@@ -56,4 +56,9 @@ export class LeaveRequestsService {
     return this.http.get<LeaveRequest[]>(`${this.apiUrl}/employees-on-leave`);
   }
 
+  getTotalEmployeesOnLeave(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count-leave`);
+  }
+
+
 }

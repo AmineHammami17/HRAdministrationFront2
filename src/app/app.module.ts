@@ -66,7 +66,18 @@ import { DatePipe } from '@angular/common';
 import { ComplaintListComponent } from './dashboard-client/complaint-list/complaint-list.component';
 import { AttendanceListComponent } from './dashboard-client/attendance-list/attendance-list.component';
 import { BaseChartDirective } from 'ng2-charts';
-
+import { SidebarHrComponent } from './dashboard-hr/sidebar-hr/sidebar-hr.component';
+import { NavBarMenuHrComponent } from './dashboard-hr/nav-bar-menu-hr/nav-bar-menu-hr.component';
+import { EmployeesHrComponent } from './dashboard-hr/employees-hr/employees-hr.component';
+import { NavBarAttendanceHrComponent } from "./dashboard-hr/nav-bar-attendance-hr/nav-bar-attendance-hr.component";
+import { UpdateEmployeeHrComponent } from './dashboard-hr/employees-hr/update-employee-hr/update-employee-hr.component';
+import { AttendancesHrComponent } from './dashboard-hr/attendances-hr/attendances-hr.component';
+import { AttendanceListHrComponent } from './dashboard-hr/attendance-list-hr/attendance-list-hr.component';
+import { BodyHrDashboardComponent } from './dashboard-hr/body-hr-dashboard/body-hr-dashboard.component';
+import { ProfileHrComponent } from './dashboard-hr/profile-hr/profile-hr.component';
+import { NavBarMenuLeaveHrComponent } from './dashboard-hr/nav-bar-menu-leave-hr/nav-bar-menu-leave-hr.component';
+import { LeaveListHrComponent } from './dashboard-hr/leave-list-hr/leave-list-hr.component';
+import { EmployeesOnLeaveComponent } from './dashboard-hr/employees-on-leave/employees-on-leave.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +103,7 @@ import { BaseChartDirective } from 'ng2-charts';
     UpdateProjectComponent,
     NavBarMenuLeaveComponent,
     LeaveComponent,
-    ComplaintsComponent,SidebarComponent,
+    ComplaintsComponent,SidebarComponent,SidebarHrComponent,NavBarMenuHrComponent,
     AnnouncementComponent,
     AddAnnouncementComponent,
     UpdateAnnouncementComponent,
@@ -146,10 +157,22 @@ import { BaseChartDirective } from 'ng2-charts';
     NavBarAttendancesComponent,
     NavBarComplaintsComponent,
     ComplaintListComponent,
-    AttendanceListComponent
+    AttendanceListComponent,
+    EmployeesHrComponent,
+    UpdateEmployeeHrComponent,
+    NavBarAttendanceHrComponent,
+    AttendancesHrComponent,
+    BodyHrDashboardComponent,
+    ProfileHrComponent,
+    AttendanceListHrComponent,
+    NavBarMenuLeaveHrComponent,
+    LeaveListHrComponent,
+    EmployeesOnLeaveComponent
+    
+    
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, BrowserAnimationsModule,
-    HttpClientModule,RouterModule,MatInputModule,MatDatepickerModule,MatNativeDateModule ,MatIconModule ,BaseChartDirective],
+    HttpClientModule, RouterModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, BaseChartDirective],
   providers: [ DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass:HttpRequestInterceptor , multi: true },],
   bootstrap: [AppComponent],

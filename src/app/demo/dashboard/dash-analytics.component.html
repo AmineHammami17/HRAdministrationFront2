@@ -14,3 +14,29 @@
       </app-card>
     </div>
   }
+  <div class="row">
+    <div class="col-md-6 col-xl-6">
+      <app-card cardClass="bg-c-transparent order-card">
+        <h6 class="text-black">Complaints Status</h6>
+        <apx-chart
+          [series]="complaintsChartOptions.series"
+          [chart]="complaintsChartOptions.chart"
+          [labels]="complaintsChartOptions.labels"
+          [responsive]="complaintsChartOptions.responsive"
+        ></apx-chart>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-6">
+      <app-card cardClass="bg-c-transparent order-card">
+        <h6 class="text-black">Leave Requests Overview</h6>
+        <apx-chart
+          [series]="leaveRequestsChartOptions.series"
+          [chart]="leaveRequestsChartOptions.chart"
+          [xaxis]="leaveRequestsChartOptions.xaxis"
+          [responsive]="leaveRequestsChartOptions.responsive"
+          [plotOptions]="leaveRequestsChartOptions.plotOptions"
+        ></apx-chart>
+      </app-card>
+    </div>
+  </div>
+  
